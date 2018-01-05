@@ -1,2 +1,2 @@
 # braum
-Manage DDNS with No-IP and Ngrok
+Manage Ngrok and IFTTT

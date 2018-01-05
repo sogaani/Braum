@@ -1,0 +1,4 @@
+{
+    "port":8000,
+    "url_store":"https://apilio.herokuapp.com/string_variables/?value="
+}
