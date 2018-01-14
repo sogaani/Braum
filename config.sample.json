@@ -1,4 +1,9 @@
 {
-    "port":8000,
-    "url_store":"https://apilio.herokuapp.com/string_variables/?value="
+    "port": 8000,
+    "url_store": "https://apilio.herokuapp.com/string_variables/?value=",
+    "pc": {
+        "mac": "xx:xx:xx:xx:xx",
+        "user": "hoge",
+        "password": "hoge"
+    }
 }

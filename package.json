@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/sogaani/Braum#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "broadlinkjs-rm": "git+https://github.com/sogaani/broadlinkjs-rm.git#master",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
     "ngrok": "^2.2.24",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "wake_on_lan": "0.0.4"
   }
 }
