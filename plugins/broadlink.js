@@ -92,6 +92,16 @@ function getDevice({ host, log, learnOnly }) {
     return device;
 }
 
+function sendData(device = false, hexData = false) {
+    if(device === false || hexData === false) {
+        console.log('Missing params, sendData failed', typeof device, typeof hexData);
+        return;
+    }
+
+    const hexDataBuffer = new Buffer(hexData, 'hex');
+    device.sendData(hexDataBuffer);
+}
+
 /* express plug */
 function execCommand(command, req, res) {
     if (command && req.body.secret == config.secret) {
@@ -137,11 +147,8 @@ exports.googlehome = function () {
     return ['/command', function (req, res) {
         const target = req.body ? req.body.target : null;
         const voiceCommand = req.body ? req.body.voiceCommand : null;
-        console.log(req.body);
+
         const command = config.commands.find((e) => { return e.targets && (e.targets.indexOf(target) >= 0) && e.voiceCommands && (e.voiceCommands.indexOf(voiceCommand) >= 0); });
-        console.log(config.commands[8]);
-        console.log(config.commands[8].targets.indexOf(target) );
-        console.log(config.commands[8].voiceCommands.indexOf(voiceCommand) );
 
         execCommand(command, req, res);
     }];
