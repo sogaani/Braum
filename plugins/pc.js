@@ -3,29 +3,33 @@ const config = require('../config.json').pc;
 const child_process = require('child_process');
 
 exports.googlehome = function () {
-    return ['/pc', function (req, res) {
-        const command = request.body ? request.body.command : null;
-        switch (command) {
-            case '消して':
-            case '落として':
-            case 'シャットダウン':
-            case '切って':
-                shutdownPC();
-                break;
-            case 'つけて':
-            case '起動して':
-            case '起動':
-                bootPC();
-                break;
-            case '再起動して':
-            case '再起動':
-            case 'リブート':
-                rebootPC();
-                break;
-            default:
-                return res.sendStatus(400);
+    return ['/command', function (req, res, next) {
+        const command = request.body ? request.body.voiceCommand : null;
+        const target = request.body ? request.body.target : null;
+        if (target == 'PC' || target == 'パソコン') {
+            switch (command) {
+                case '消して':
+                case '落として':
+                case 'シャットダウン':
+                case '切って':
+                    shutdownPC();
+                    break;
+                case 'つけて':
+                case '起動して':
+                case '起動':
+                    bootPC();
+                    break;
+                case '再起動して':
+                case '再起動':
+                case 'リブート':
+                    rebootPC();
+                    break;
+                default:
+                    return res.sendStatus(400);
+            }
+            return res.sendStatus(200);
         }
-        res.sendStatus(200);
+        next();
     }];
 }
 

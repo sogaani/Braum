@@ -93,7 +93,7 @@ function getDevice({ host, log, learnOnly }) {
 }
 
 function sendData(device = false, hexData = false) {
-    if(device === false || hexData === false) {
+    if (device === false || hexData === false) {
         console.log('Missing params, sendData failed', typeof device, typeof hexData);
         return;
     }
@@ -144,13 +144,17 @@ function execCommand(command, req, res) {
 }
 
 exports.googlehome = function () {
-    return ['/command', function (req, res) {
+    return ['/command', function (req, res, next) {
         const target = req.body ? req.body.target : null;
         const voiceCommand = req.body ? req.body.voiceCommand : null;
 
         const command = config.commands.find((e) => { return e.targets && (e.targets.indexOf(target) >= 0) && e.voiceCommands && (e.voiceCommands.indexOf(voiceCommand) >= 0); });
-
-        execCommand(command, req, res);
+        if (command) {
+            execCommand(command, req, res);
+        }
+        else {
+            next();
+        }
     }];
 }
 
