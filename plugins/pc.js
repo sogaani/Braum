@@ -4,8 +4,8 @@ const child_process = require('child_process');
 
 exports.googlehome = function () {
     return ['/command', function (req, res, next) {
-        const command = request.body ? request.body.voiceCommand : null;
-        const target = request.body ? request.body.target : null;
+        const command = req.body ? req.body.voiceCommand : null;
+        const target = req.body ? req.body.target : null;
         if (target == 'PC' || target == 'パソコン') {
             switch (command) {
                 case '消して':
